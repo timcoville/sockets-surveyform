@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sockets</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+            $(document). ready(function (){
+                var socket = io(); //1
+                socket.on('greeting', function (data) { //4
+                  console.log(data.msg);
+                  console.log(socket.id) //5
+                socket.emit('thankyou', { msg: 'Thank you for connecting me! - Client', id: socket.id }); //6
+                });
+            })
+</script>
+</head>
+<body>
+    <h1>Sockets</h1>
+</body>
+</html>

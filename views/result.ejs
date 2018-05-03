@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Survey Form</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Submitted Information</h1>
+        <% %>
+        <h4><span class="label">Name:</span><%= context.data.name %></h4>
+        <h4><span class="label">Dojo Location:</span><%= context.data.location %></h4>
+        <h4><span class="label">Fav Language:</span><%= context.data.language %></h4>
+        <h4><span class="label">Comment:</span><%= context.data.comment %></h4>
+        <% %>
+    <button><a href="/">Go Back</a></button>
+    </div>
+</body>
+</html>
