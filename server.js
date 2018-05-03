@@ -17,7 +17,11 @@ app.get('/', function (req, res) {
 io.on('connection', function(socket){
     socket.emit('greeting', { msg: 'Greetings, from serverNode, brought to you by Sockets! - Server'})
     socket.on('thankyou', function(data){
-        console.log(data.msg + "- from client: " + data.id);
+        console.log(data.msg + "- from client: ");
+    });
+    socket.on('form', function(data){
+        var rand = Math.floor(Math.random() * 1000)
+        console.log(data.form.name + rand);
     });
 });
 

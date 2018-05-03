@@ -11,6 +11,24 @@
     <script type ="text/javascript">
         $(document). ready(function (){
             var socket = io(); //1
+            var form = $('#form');
+            var name = $('input[name="name"]');
+            var name = $("input[name='name']")
+            var location = $('select[name="location"]');
+            var language = $('select[name="language"]');
+            var comment = $('textarea[name="comment"]');
+            form.submit(function(e){
+                e.preventDefault();
+                var post = { 
+                    name: name.val(),
+                    location: location.val(),
+                    language: language.val(),
+                    comment: comment.val()
+                }
+                console.log(post)
+                socket.emit('form', { form: post }); //6
+            })
+            
             socket.on('greeting', function (data) { //4
               console.log(data.msg);
               console.log(socket.id) //5
@@ -22,7 +40,7 @@
 <body>
     <div id="wrapper">
         <h1>Coding Dojo Survey</h1>
-        <form action="/process" method='post'>
+        <form id="form">
         <div class="input"><span class="label">Your Name:</span> <input type="text" name="name"></div>
         <div class="input"><span class="label">Dojo Location:</span>
             <select name="location">
@@ -49,7 +67,7 @@
         <div class="input"><span class="label">Comments:</span><br>
             <textarea name="comment"></textarea>
         </div>
-        <input type='Submit' value="Submit">
+        <input class="submit" type='Submit' value="Submit">
         </form>
     </div>
 </body>
