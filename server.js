@@ -20,8 +20,8 @@ io.on('connection', function(socket){
         console.log(data.msg + "- from client: ");
     });
     socket.on('form', function(data){
-        var rand = Math.floor(Math.random() * 1000)
-        console.log(data.form.name + rand);
+        console.log(data);
+        socket.emit('msg', data);
     });
 });
 

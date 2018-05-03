@@ -12,21 +12,18 @@
         $(document). ready(function (){
             var socket = io(); //1
             var form = $('#form');
-            var name = $('input[name="name"]');
-            var name = $("input[name='name']")
-            var location = $('select[name="location"]');
-            var language = $('select[name="language"]');
-            var comment = $('textarea[name="comment"]');
+            $("#hidden").hide();
             form.submit(function(e){
                 e.preventDefault();
                 var post = { 
-                    name: name.val(),
-                    location: location.val(),
-                    language: language.val(),
-                    comment: comment.val()
+                    Name: $('input[name="name"]').val(),
+                    Location: $('select[name="location"]').val(),
+                    Language: $('select[name="language"]').val(),
+                    Comment: $('textarea[name="comment"]').val(),
+                    Number: Math.floor(Math.random() * 1000),
                 }
-                console.log(post)
-                socket.emit('form', { form: post }); //6
+
+                socket.emit('form', post); //6
             })
             
             socket.on('greeting', function (data) { //4
@@ -34,11 +31,22 @@
               console.log(socket.id) //5
             socket.emit('thankyou', { msg: 'Thank you for connecting me! - Client', id: socket.id }); //6
             });
+            socket.on('msg', function(data){
+                var content = ""
+                for (idx in data){
+                    content += "<p>"+idx+": "+data[idx]+"</p>"
+                }
+                console.log(content)
+                $("#hidden").append(content)
+                $("#hidden").show();
+                console.log(data);
+            });
         })
     </script>
 </head>
 <body>
     <div id="wrapper">
+        <div id="hidden"></div>
         <h1>Coding Dojo Survey</h1>
         <form id="form">
         <div class="input"><span class="label">Your Name:</span> <input type="text" name="name"></div>
