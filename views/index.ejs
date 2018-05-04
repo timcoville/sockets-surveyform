@@ -30,7 +30,7 @@
             socket.emit('thankyou', { msg: 'Thank you for connecting me! - Client', id: socket.id }); //6
             });
             socket.on('msg', function(data){
-                var content = ""
+                var content = "<h2>Results</h2>"
                 for (idx in data){
                     content += "<p>"+idx+": "+data[idx]+"</p>"
                 }
